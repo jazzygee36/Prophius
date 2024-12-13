@@ -27,7 +27,7 @@ const TransactionTable = () => {
           <span className='text-[#264ECA]'>{TableDetails.length}</span>
         </h3>
         <div className='flex gap-3 items-center'>
-          <p>Filter by status:</p>
+          <p className='hidden md:block'>Filter by status:</p>
           <select
             className='border border-gray-300 p-2 rounded-md'
             value={filter}
@@ -54,7 +54,7 @@ const TransactionTable = () => {
                 Transaction Date
               </th>
               <th className='border border-gray-300 px-4 py-2'>Email</th>
-              <th className='border border-gray-300 px-4 py-2'>Type</th>
+              <th className='border border-gray-300 px-4 py-2'>Description</th>
               <th className='border border-gray-300 px-4 py-2'>Amount</th>
               <th className='border border-gray-300 px-4 py-2'>Status</th>
             </tr>
@@ -91,7 +91,7 @@ const TransactionTable = () => {
         </table>
       </div>
       {/* Pagination */}
-      <div className='flex justify-between items-center mt-5'>
+      <div className='flex justify-between items-center mt-5 mb-3'>
         <button
           className='px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 disabled:opacity-50'
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}

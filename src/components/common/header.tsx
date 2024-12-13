@@ -13,6 +13,8 @@ const Header = () => {
     },
   ];
 
+  const user = localStorage.getItem('email');
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -38,7 +40,9 @@ const Header = () => {
       </div>
       <div className='flex items-center gap-3'>
         <Notification />
-        <p>Prophius</p>
+        <div className='rounded-full flex justify-center items-center p-3 bg-slate-300 uppercase'>
+          {user?.[0] ?? 'Prophius'}
+        </div>
 
         <div className='relative'>
           <div onClick={toggleMenu}>
@@ -49,7 +53,9 @@ const Header = () => {
               {menuItems.map((item, index) => (
                 <li key={index}>
                   <div
-                    onClick={() => navigate(item.path)}
+                    onClick={() => {
+                      navigate(item.path), handleLogin();
+                    }}
                     className='block px-4 py-2 hover:bg-gray-100'
                   >
                     {item.name}

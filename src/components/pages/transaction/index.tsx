@@ -1,38 +1,53 @@
+import { useState } from 'react';
 import Dashbaord from '../../common/dashboard';
 import TransactionTable from './table';
+const transactions = [
+  {
+    name: 'Balances',
+    amount: 10000,
+  },
+  {
+    name: 'Savings',
+    amount: 7000,
+  },
+  {
+    name: 'Incomes',
+    amount: 24000,
+  },
+  {
+    name: 'Expenses',
+    amount: 18000,
+  },
+];
 
 const Transactions = () => {
-  const transactions = [
-    {
-      name: 'Balances',
-      amount: 7000,
-    },
-    {
-      name: 'Savings',
-      amount: 7000,
-    },
-    {
-      name: 'Incomes',
-      amount: 7000,
-    },
-    {
-      name: 'Expenses',
-      amount: 7000,
-    },
-  ];
+  const [showBalance, setShowBalance] = useState(false);
+
+  const handleBalance = () => {
+    setShowBalance(!showBalance);
+  };
+
   return (
     <div className=''>
       <Dashbaord>
-        <h2 className='text-[25px] font-semibold mb-5'>Transactions History</h2>
-
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-5 items-center mb-5 '>
+        <div className='flex justify-between items-center'>
+          <h2 className='text-[25px] font-semibold mb-5'>
+            Transactions History
+          </h2>
+          <button onClick={handleBalance} className='font-bold text-[#264ECA]'>
+            {showBalance ? 'Hide balance' : 'Show balance'}
+          </button>
+        </div>
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-5 items-center mb-5 justify-center text-center '>
           {transactions.map((history) => (
             <div
               key={history.name}
               className=' gap-5 rounded-lg border border-gray-300 py-3 px-4'
             >
               <p>{history.name}</p>
-              <p className='font-bold text-2xl'>N{history.amount}</p>
+              <p className='font-bold text-2xl'>
+                {showBalance ? `N${history.amount}` : '******'}
+              </p>
             </div>
           ))}
         </div>

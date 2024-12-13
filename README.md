@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
+# Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React-based web application created as part of an assessment. It features a login page for authentication and a transaction dashboard for managing user transactions. The project demonstrates the use of modern tools and practices, focusing on security, scalability, and user experience.
 
-Currently, two official plugins are available:
+# Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# General
 
-## Expanding the ESLint configuration
+# Frameworks and Tools:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+     React (with Vite) for fast development and performance.
+     Tailwind CSS for scalable and responsive UI design.
 
-- Configure the top-level `parserOptions` property like this:
+# Login Page
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+    Users log in with an email and password.
+    On successful login, the application generates a token stored in localStorage.
+    Implements form validation with error messages for invalid inputs.
+    Redirects authenticated users to the transaction dashboard.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+# Transaction Dashboard
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+    Protected Route: Accessible only to authenticated users with a valid token in localStorage.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+    User Balance: Hidden by default for security purposes.
+    Can be toggled to display the balance by clicking "Show Balance."
+
+# Transaction Details:
+
+    Displays the total number of transactions.
+    Allows users to filter transactions by status: Pending, Success, Failed, or All.
+
+# Table Pagination:
+
+Breaks the transaction list into manageable pages.
+Users can navigate between pages for better readability.
+
+# How to run the code:
+
+after cloning and installing node_modules,
+do: npm run dev, it will get started

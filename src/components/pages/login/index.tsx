@@ -27,8 +27,12 @@ const Login = () => {
       return;
     }
 
-    if (email === 'prophius@example.com' && password === 'password123') {
+    if (
+      (email === 'prophius@example.com' && password === 'password123') ||
+      (email && password)
+    ) {
       localStorage.setItem('token', 'mock-jwt-token');
+      localStorage.setItem('email', email);
       setTimeout(() => {
         setLoading(true);
       }, 2000);
@@ -45,7 +49,7 @@ const Login = () => {
         <LoadingSpinner />
       ) : (
         <div className='bg-[#264ECA] h-screen flex items-center'>
-          <div className='w-[300px] m-auto px-3 py-3'>
+          <div className='w-[80%] md:w-[300px] m-auto px-3 py-3'>
             <div className='flex justify-center mb-5 rounded-lg'>
               <img src={Logo} alt='logo' width={120} />
             </div>
