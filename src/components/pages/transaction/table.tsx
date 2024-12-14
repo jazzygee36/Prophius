@@ -1,5 +1,15 @@
 import { useState } from 'react';
 import { TableDetails } from '../../utils/transactionTable';
+
+// Define a type for the statuses
+type Status = 'Pending' | 'Success' | 'Failed';
+
+const color: Record<Status, string> = {
+  Pending: 'orange',
+  Success: 'green',
+  Failed: 'red',
+};
+
 const TransactionTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState('');
@@ -19,7 +29,7 @@ const TransactionTable = () => {
   );
 
   return (
-    <div className='p-4'>
+    <div>
       {/* Header and Filter */}
       <div className='flex justify-between items-center mb-4'>
         <h3 className='text-sm md:text-xl font-bold'>
@@ -48,7 +58,7 @@ const TransactionTable = () => {
       <div className='overflow-x-auto'>
         <table className='table-auto border-collapse border border-gray-300 w-full text-left'>
           <thead className='bg-gray-100'>
-            <tr>
+            <tr className='text-[#0c1632]'>
               <th className='border border-gray-300 px-4 py-2'>Name</th>
               <th className='border border-gray-300 px-4 py-2'>
                 Transaction Date
@@ -82,7 +92,10 @@ const TransactionTable = () => {
                 <td className='border border-gray-300 px-4 py-2'>
                   {transaction.amount}
                 </td>
-                <td className='border border-gray-300 px-4 py-2'>
+                <td
+                  className={`border border-gray-300 px-4 py-2  `}
+                  style={{ color: color[transaction.status as Status] }}
+                >
                   {transaction.status}
                 </td>
               </tr>

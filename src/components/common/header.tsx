@@ -28,7 +28,7 @@ const Header = () => {
   const menuItems = [{ name: 'Logout', path: '/', handleLogin: handleLogin }];
   return (
     <div className='flex justify-between items-center w-full py-6'>
-      <div className='flex items-center gap-8 cursor-pointer'>
+      <div className='flex items-center gap-4 md:gap-8 cursor-pointer'>
         <div>
           <img src={Logo} alt='logo' width={40} />
         </div>
@@ -40,8 +40,8 @@ const Header = () => {
       </div>
       <div className='flex items-center gap-3'>
         <Notification />
-        <div className='rounded-full flex justify-center items-center p-3 bg-slate-300 uppercase'>
-          {user?.[0] ?? 'Prophius'}
+        <div className='rounded-full flex justify-center items-center p-3 bg-slate-300 uppercase text-sm md:text-md'>
+          {user?.[0] ?? 'Pro'}
         </div>
 
         <div className='relative'>
