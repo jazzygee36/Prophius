@@ -22,7 +22,7 @@ const TransactionTable = () => {
     <div className='p-4'>
       {/* Header and Filter */}
       <div className='flex justify-between items-center mb-4'>
-        <h3 className='text-xl font-bold'>
+        <h3 className='text-sm md:text-xl font-bold'>
           All Transactions :{' '}
           <span className='text-[#264ECA]'>{TableDetails.length}</span>
         </h3>

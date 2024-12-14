@@ -30,11 +30,14 @@ const Transactions = () => {
   return (
     <div className=''>
       <Dashbaord>
-        <div className='flex justify-between items-center'>
-          <h2 className='text-[25px] font-semibold mb-5'>
+        <div className='flex justify-between items-center mb-5'>
+          <h2 className='text-sm md:text-[25px] font-semibold '>
             Transactions History
           </h2>
-          <button onClick={handleBalance} className='font-bold text-[#264ECA]'>
+          <button
+            onClick={handleBalance}
+            className='font-bold text-[#264ECA] text-sm md:text-[block]'
+          >
             {showBalance ? 'Hide balance' : 'Show balance'}
           </button>
         </div>
