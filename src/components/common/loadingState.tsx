@@ -1,42 +1,9 @@
-import React from 'react';
-
-type LoadingSpinnerProps = {
-  size?: number; // Size of the spinner
-  color?: string; // Color of the spinner
-};
-
-const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
-  size = 40,
-  color = 'red',
-}) => {
+const Loading = () => {
   return (
-    <div
-      className='flex justify-center items-center'
-      style={{ width: size, height: size }}
-    >
-      <svg
-        className='animate-spin'
-        xmlns='http://www.w3.org/2000/svg'
-        fill='none'
-        viewBox='0 0 24 24'
-        style={{ width: size, height: size }}
-      >
-        <circle
-          className='opacity-25'
-          cx='12'
-          cy='12'
-          r='10'
-          stroke={color}
-          strokeWidth='4'
-        ></circle>
-        <path
-          className='opacity-75'
-          fill={color}
-          d='M4 12a8 8 0 018-8v8H4z'
-        ></path>
-      </svg>
+    <div className='flex items-center justify-center h-screen bg-gray-100'>
+      <div className='spinner border-t-4 border-b-4 border-blue-500 w-12 h-12 rounded-full animate-spin'></div>
     </div>
   );
 };
 
-export default LoadingSpinner;
+export default Loading;
