@@ -5,10 +5,10 @@ import Transactions from './components/pages/transaction';
 
 const Navigation = () => {
   // PrivateRoute component
-  const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-    const isAuthenticated = !!localStorage.getItem('token');
-    return isAuthenticated ? <>{children}</> : (window.location.href = '/');
-  };
+  // const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  //   const isAuthenticated = !!localStorage.getItem('token');
+  //   return isAuthenticated ? <>{children}</> : (window.location.href = '/');
+  // };
   return (
     <BrowserRouter>
       <Routes>
@@ -17,9 +17,9 @@ const Navigation = () => {
         <Route
           path='/dashboard'
           element={
-            <PrivateRoute>
-              <Transactions />
-            </PrivateRoute>
+            // <PrivateRoute>
+            <Transactions />
+            // </PrivateRoute>
           }
         />
       </Routes>

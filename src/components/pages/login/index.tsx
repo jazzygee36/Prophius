@@ -34,6 +34,7 @@ const Login = () => {
         setLoading(true);
       }, 400);
       window.location.href = '/dashboard';
+      setLoading(false);
     } else {
       setError('Password must be 6 characters');
     }
