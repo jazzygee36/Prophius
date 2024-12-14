@@ -1,5 +1,15 @@
 import { useState } from 'react';
 import { TableDetails } from '../../utils/transactionTable';
+import ReusableModal from '../../common/modal';
+
+interface TransactionProps {
+  name: string;
+  date: string;
+  email: string;
+  type: string;
+  amount: string;
+  status: string;
+}
 
 // Define a type for the statuses
 type Status = 'Pending' | 'Success' | 'Failed';
@@ -11,6 +21,9 @@ const color: Record<Status, string> = {
 };
 
 const TransactionTable = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] =
+    useState<TransactionProps | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState('');
   const itemsPerPage = 5;
@@ -27,6 +40,18 @@ const TransactionTable = () => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  // Open modal and set selected transaction
+  const openModal = (transaction: TransactionProps) => {
+    setSelectedTransaction(transaction);
+    setIsModalOpen(true);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setSelectedTransaction(null);
+    setIsModalOpen(false);
+  };
 
   return (
     <div>
@@ -72,6 +97,7 @@ const TransactionTable = () => {
           <tbody>
             {currentItems.map((transaction, index) => (
               <tr
+                onClick={() => openModal(transaction)}
                 key={index}
                 className={`${
                   index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
@@ -93,7 +119,7 @@ const TransactionTable = () => {
                   {transaction.amount}
                 </td>
                 <td
-                  className={`border border-gray-300 px-4 py-2  `}
+                  className={`border border-gray-300 px-4 py-2`}
                   style={{ color: color[transaction.status as Status] }}
                 >
                   {transaction.status}
@@ -103,6 +129,7 @@ const TransactionTable = () => {
           </tbody>
         </table>
       </div>
+
       {/* Pagination */}
       <div className='flex justify-between items-center mt-5 mb-3'>
         <button
@@ -125,6 +152,69 @@ const TransactionTable = () => {
           Next
         </button>
       </div>
+
+      {/* Modal */}
+      <ReusableModal isOpen={isModalOpen} onClose={closeModal}>
+        {selectedTransaction ? (
+          <div>
+            <h2 className='text-xl font-semibold mb-5 text-blue-950'>
+              Transaction Details
+            </h2>
+            <div className='flex justify-between '>
+              <p>
+                <strong>Name:</strong>
+              </p>
+              <p>{selectedTransaction.name}</p>
+            </div>
+            <hr className='my-4' />
+
+            <div className='flex justify-between'>
+              <p>
+                <strong>Date:</strong>
+              </p>
+              <p>{selectedTransaction.date}</p>
+            </div>
+            <hr className='my-4' />
+
+            <div className='flex justify-between'>
+              <p>
+                <strong>Email:</strong>
+              </p>
+              <p>{selectedTransaction.email}</p>
+            </div>
+            <hr className='my-4' />
+
+            <div className='flex justify-between'>
+              <p>
+                <strong>Description:</strong>
+              </p>
+              <p>{selectedTransaction.type}</p>
+            </div>
+            <hr className='my-4' />
+
+            <div className='flex justify-between'>
+              <p>
+                <strong>Amount:</strong>
+              </p>
+              <p>{selectedTransaction.amount}</p>
+            </div>
+            <hr className='my-4' />
+
+            <div className='flex justify-between'>
+              <p>
+                <strong>Status:</strong>
+              </p>
+              <span
+                style={{ color: color[selectedTransaction.status as Status] }}
+              >
+                {selectedTransaction.status}
+              </span>
+            </div>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </ReusableModal>
     </div>
   );
 };
