@@ -20,12 +20,17 @@ const Login = () => {
     e.preventDefault();
     setError('');
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     // Mock validation
     if (!email || !password) {
       setError('Email and password are required');
       return;
     }
-
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
     if (email && password && password.length > 5) {
       localStorage.setItem('token', 'mock-jwt-token');
       localStorage.setItem('email', email);

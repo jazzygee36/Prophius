@@ -30,7 +30,7 @@ const Transactions = () => {
   return (
     <div className=''>
       <Dashbaord>
-        <div className='flex justify-between items-center mb-5'>
+        <div className='flex justify-between items-center mb-5 mt-3'>
           <h2 className='text-sm md:text-[25px] font-semibold '>
             Transactions History
           </h2>

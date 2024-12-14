@@ -11,13 +11,46 @@ interface TransactionProps {
   status: string;
 }
 
-// Define a type for the statuses
 type Status = 'Pending' | 'Success' | 'Failed';
 
 const color: Record<Status, string> = {
   Pending: 'orange',
   Success: 'green',
   Failed: 'red',
+};
+
+// Utility function to convert JSON data to CSV
+const convertToCSV = (data: TransactionProps[]) => {
+  const headers = ['Name', 'Date', 'Email', 'Description', 'Amount', 'Status'];
+  const rows = data.map(({ name, date, email, type, amount, status }) => [
+    name,
+    date,
+    email,
+    type,
+    amount,
+    status,
+  ]);
+
+  const csvContent = [
+    headers.join(','),
+    ...rows.map((row) => row.join(',')),
+  ].join('\n');
+
+  return csvContent;
+};
+
+// Trigger CSV download
+const downloadCSV = (data: TransactionProps[]) => {
+  const csvContent = convertToCSV(data);
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'transactions.csv';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 };
 
 const TransactionTable = () => {
@@ -76,6 +109,12 @@ const TransactionTable = () => {
             <option value='Success'>Success</option>
             <option value='Failed'>Failed</option>
           </select>
+          <button
+            className='bg-blue-500 text-white px-2 md:px-4 py-3 text-sm rounded-md hover:bg-blue-600'
+            onClick={() => downloadCSV(filteredTable)}
+          >
+            Download CSV
+          </button>
         </div>
       </div>
 
