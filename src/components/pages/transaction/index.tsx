@@ -1,24 +1,7 @@
 import { useState } from 'react';
 import Dashbaord from '../../common/dashboard';
 import TransactionTable from './table';
-const transactions = [
-  {
-    name: 'Balances',
-    amount: 10000,
-  },
-  {
-    name: 'Savings',
-    amount: 7000,
-  },
-  {
-    name: 'Incomes',
-    amount: 24000,
-  },
-  {
-    name: 'Expenses',
-    amount: 18000,
-  },
-];
+import { transactionBalance } from '../../utils/mockDatas';
 
 const Transactions = () => {
   const [showBalance, setShowBalance] = useState(false);
@@ -41,8 +24,8 @@ const Transactions = () => {
             {showBalance ? 'Hide balance' : 'Show balance'}
           </button>
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-5 items-center mb-5 justify-center text-center '>
-          {transactions.map((history) => (
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-5 items-center mb-5 justify-center text-center '>
+          {transactionBalance.map((history) => (
             <div
               key={history.name}
               className=' gap-5 rounded-lg border border-gray-300 py-3 px-4'

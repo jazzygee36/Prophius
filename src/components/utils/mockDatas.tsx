@@ -104,3 +104,22 @@ export const TableDetails = [
     status: 'Pending',
   },
 ];
+
+export const transactionBalance = [
+  {
+    name: 'Balances',
+    amount: '10,000',
+  },
+  {
+    name: 'Savings',
+    amount: '7,000',
+  },
+  {
+    name: 'Incomes',
+    amount: '24,000',
+  },
+  {
+    name: 'Expenses',
+    amount: '18,000',
+  },
+];

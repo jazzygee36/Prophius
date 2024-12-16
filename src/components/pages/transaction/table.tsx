@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TableDetails } from '../../utils/transactionTable';
+import { TableDetails } from '../../utils/mockDatas';
 import ReusableModal from '../../common/modal';
 
 interface TransactionProps {
